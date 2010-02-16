@@ -3,7 +3,7 @@
  */
 
 // first we add all the necessary paths to require.paths
-var packagesRoot = process.env.NARWHAL_HOME || "/opt/narwhal/",
+var packagesRoot = (process.env.NARWHAL_HOME || "/opt/narwhal") + "/",
     packagePaths = [""] // start with the current directory
 			.concat([ // now add alll the packages
 				"packages/pintura/",

@@ -1,14 +1,23 @@
 <!doctype html>
 <html>
 <head>
-    <title>Pattern Master</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <title>Pattern Master</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/js/dijit/themes/tundra/tundra.css" />
 </head>
-<body>
-    <div id="main">
-        <header id="top"><h1>Pattern Master</h1></header>
+<body class="tundra">
+<div id="main">
+  <header id="top"><h1>Pattern Master</h1></header>
+  <div dojoType="dijit.layout.BorderContainer" persist="true" id="browser">
+    <div dojoType="dijit.layout.ContentPane" region="top" splitter="true" id="search">
     </div>
-<script src="/js/dojo/dojo.js"></script>
+    <div dojoType="dijit.layout.ContentPane" region="center" splitter="true"  id="results">
+    </div>
+    <div dojoType="dijit.layout.ContentPane" region="bottom" splitter="true" id="item">
+    </div>
+  </div>
+</div>
+<script djConfig="parseOnLoad:true,isDebug:true" src="/js/dojo/dojo.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>
