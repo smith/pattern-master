@@ -26,7 +26,7 @@ var packagesRoot = (process.env.NARWHAL_HOME || "/opt/narwhal") + "/",
 require.paths.push.apply(require.paths, packagePaths.map(function (path){
 	return path + "lib";
 }));
-
+require("sys").puts(require.paths);
 require("node-commonjs");
 
 var pintura = require("pintura");
@@ -50,3 +50,5 @@ require("jsgi-node").start(
 
 // having a REPL is really helpful
 require("repl").start();
+
+require("node_debug").listen(8081);
