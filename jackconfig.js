@@ -18,6 +18,10 @@ exports.development = function(app, options){
 		require("jack/static").Static(null, {urls:[""],root:"public"}),
 		// this will provide access to the server side JS libraries from the client
 		require("jack/static").Static(null, {urls:["/lib"],root:""}),
+        require("jsgi/redirect-root").RedirectRoot(
+			// main pintura app
+			pintura.app
+		),
 		// the typical reloader scenario
 		(!options || options.reload) ? require("jack/reloader").Reloader(File.join(File.cwd(), "jackconfig"), "app") :
 								exports.app

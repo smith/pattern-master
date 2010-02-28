@@ -1,9 +1,0 @@
-[submodule "public/js/dojo"]
-	path = public/js/dojo
-	url = git://github.com/dojo/dojo.git
-[submodule "public/js/dojox"]
-	path = public/js/dojox
-	url = git://github.com/dojo/dojox.git
-[submodule "public/js/dijit"]
-	path = public/js/dijit
-	url = git://github.com/dojo/dijit.git
