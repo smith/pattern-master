@@ -3,33 +3,37 @@
 <head>
   <title>Pattern Master</title>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/screen.css" />
 </head>
 <body>
 <div id="main">
   <header><h1>Pattern Master</h1></header>
-  <form id="search" action="/Pattern/" method="get">
-    <h2>Search</h2>
-    <div class="item">
-      <label for="search-publication">Publication</label>
-      <input name="publication" id="search-publication" />
+  <nav>
+    <ul>
+      <li><a href="#">Add Pattern</a></li>
+    </ul>
+  </nav>
+  <div id="search">
+    <form action="" method="get">
+      <h2>Search</h2>
+      <input name="tags" id="search-tags" />
+      <button>Search</button>
+    </form>
+    <div id="results">
+      <h2>Results</h2>
+      <ul></ul>
     </div>
-    <div class="submit"><button>Search</button></div>
-  </form>
-  <div id="results">
-    <h2>Results</h2>
-    <ul></ul>
   </div>
-  <form id="pattern" action="/Pattern/" method="post">
-    <h2>Pattern</h2>
-    <div class="item">
-      <label for="item-publication">Publication</label>
-      <input name="publication" id="item-publication" />
-    </div>
-    <div class="submit"><button>Create</button></div>
-  </form>
+  <div id="pattern">
+    <form action="" method="post">
+      <h2>Pattern</h2>
+      <div class="item">
+        <label for="item-publication">Publication</label>
+        <input name="publication" id="item-publication" />
+      </div>
+      <div class="submit"><button>Create</button></div>
+    </form>
+  </div>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script src="/js/bootstrap.js"></script>
-<script src="/lib/pm/ui.js"></script>
 </body>
 </html>
