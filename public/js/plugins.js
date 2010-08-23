@@ -1,5 +1,4 @@
 // Module to load jQuery plugins
-require.def("plugins", []);
+require.def("plugins", ["plugins/ui"]);
 // TODO
-// tabs, tags, autosuggest, forms, global-es5, json, couch, promises, grid,
-// select, date
+// tags, forms, global-es5, json, couch, promises, grid, hash
