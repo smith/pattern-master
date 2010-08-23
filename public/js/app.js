@@ -21,10 +21,18 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
         console.log("add!");
     }
 
+    // Save new pattern
+    function create(event) {
+        event.preventDefault();
+        pattern.put($(this).parent("form").serializeObject());
+    }
+
     // Install handlers for events
     function run() {
         $("#search form button").live("click", search);
         $("#add").live("click", add);
+        $("#add").live("click", add);
+        $(".pattern form button").live("click", create);
 
         tabs.create("#tabs");
         $("button").button();
