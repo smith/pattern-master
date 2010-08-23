@@ -22,6 +22,9 @@ require.def("app", ["pattern"], function (pattern) {
     function run() {
         $("#search form button").live("click", search);
         $("#add").live("click", add);
+
+        $("#tabs").tabs();
+        $("button").button();
     }
 
     return { run: run };
