@@ -1,5 +1,3 @@
-require.def("main", ["plugins"], function () {
-    $(document).ready(function () {
-        console.log("ready!");
-    });
+require.def("main", ["plugins", "app"], function (plugins, app) {
+    $(document).ready(app.run);
 });
