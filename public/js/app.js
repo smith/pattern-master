@@ -1,6 +1,4 @@
-require.def("app", ["pattern"], function (pattern) {
-    var t; // tab container
-
+require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
     // Update search results
     function updateResults(results) {
         console.log("results!");
@@ -19,18 +17,16 @@ require.def("app", ["pattern"], function (pattern) {
     // Add a pattern pane
     function add(event) {
         event.preventDefault();
-        t.tabs("add", "#pattern", "New Pattern");
+        tabs.add("#pattern", "New Pattern");
         console.log("add!");
     }
 
     // Install handlers for events
     function run() {
-        t = $("#tabs");
-
         $("#search form button").live("click", search);
         $("#add").live("click", add);
 
-        t.tabs();
+        tabs.create("#tabs");
         $("button").button();
     }
 
