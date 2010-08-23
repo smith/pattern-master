@@ -1,5 +1,6 @@
-require.def("tabs", function () {
-    var t; // tab container
+require.def("ui/tabs", function () {
+    var t, // tab container
+        addIndex = 0;
 
     return {
         create: function (selector) {

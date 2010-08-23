@@ -9,35 +9,30 @@
 <body>
 <div id="main">
   <header><h1>Pattern Master</h1></header>
-  <nav>
-    <ul>
-      <li><button id="add">Add Pattern</button></li>
-    </ul>
-  </nav>
   <div id="tabs">
     <ul>
-      <li><a href="#search">Search</a></li>
+      <li class="search"><a href="#search">Search</a></li>
+      <li class="add"><a href="#new">New Pattern</a></li>
     </ul>
-      <div id="search">
-        <form action="" method="get">
-          <input type="search" name="tags" id="search-tags" />
-          <button>Search</button>
-        </form>
-        <div id="results">
-          <h2>Results</h2>
-          <p class="nothing">Nothing found</li>
+    <div id="search">
+      <form action="" method="get">
+        <input type="search" name="tags" id="search-tags" />
+        <button>Search</button>
+      </form>
+      <div id="results">
+        <h2>Results</h2>
+        <p class="nothing">Nothing found</p>
+      </div>
+    </div>
+    <div id="new">
+      <form action="" method="post">
+        <div class="item">
+          <label for="item-publication">Publication</label>
+          <input name="publication" id="item-publication" />
         </div>
-      </div>
-      <div id="pattern">
-        <form action="" method="post">
-          <h2>Pattern</h2>
-          <div class="item">
-            <label for="item-publication">Publication</label>
-            <input name="publication" id="item-publication" />
-          </div>
-          <div class="submit"><button>Create</button></div>
-        </form>
-      </div>
+        <div class="submit"><button>Create</button></div>
+      </form>
+    </div>
   </div>
 </div>
 <script src="js/jquery.js"></script>
