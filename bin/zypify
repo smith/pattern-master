@@ -1,7 +1,0 @@
-#!/bin/sh
-# Make sure all components are using Kris Zyp's branches
-APPS=~/apps
-GCOKZ="git checkout kriszyp"
-
-(cd $APPS/narwhal && echo -n `pwd`: && $GCOKZ)
-(cd $APPS/jack && echo -n `pwd`: && $GCOKZ)

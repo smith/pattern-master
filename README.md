@@ -1,1 +1,1 @@
-This is a template starting application for Pintura. 
+Never be without a crafts project.
