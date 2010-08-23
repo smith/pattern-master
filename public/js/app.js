@@ -11,7 +11,6 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
         // TODO: put this in updateResults (as a promise fulfilled)
         $("#results").show();
         pattern.query({ tags: tags }).then(updateResults);
-
     }
 
     // Add a pattern pane
@@ -30,8 +29,6 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
     // Install handlers for events
     function run() {
         $("#search form button").live("click", search);
-        $("#add").live("click", add);
-        $("#add").live("click", add);
         $(".pattern form button").live("click", create);
 
         tabs.create("#tabs");
