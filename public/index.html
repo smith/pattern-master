@@ -26,8 +26,28 @@
     <div id="new" class="pattern">
       <form action="" method="post">
         <div class="item">
+          <label for="item-name">Name</label>
+          <input name="name" id="item-name" />
+        </div>
+        <div class="item">
+          <label for="item-tags">Tags</label>
+          <textarea name="tags" id="item-tags"></textarea>
+        </div>
+        <div class="item">
+          <label for="item-description">Description</label>
+          <textarea name="description" id="item-description"></textarea>
+        </div>
+        <div class="item">
           <label for="item-publication">Publication</label>
           <input name="publication" id="item-publication" />
+        </div>
+        <div class="item">
+          <label for="item-date">Date</label>
+          <input type="date" name="date" id="item-date" />
+        </div>
+        <div class="item">
+          <label for="item-notes">Notes</label>
+          <textarea name="notes" id="item-notes"></textarea>
         </div>
         <button>Create</button>
       </form>
