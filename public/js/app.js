@@ -24,7 +24,7 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
     function create(event) {
         var o = {};
         event.preventDefault();
-        o = $(this).parent("form").serializeObject();
+        o = $(this).parent("form").formParams();
         Object.keys(o, function (k) { o[k] = String(o[k]).trim(); });
         o.tags = o.tags.split(" ");
         pattern.put(o);
