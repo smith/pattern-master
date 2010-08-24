@@ -33,6 +33,7 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
 
         tabs.create("#tabs");
         $("button").button();
+        $("input[type=date]").datepicker();
     }
 
     return { run: run };
