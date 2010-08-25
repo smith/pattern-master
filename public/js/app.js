@@ -22,11 +22,11 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
 
     // Save new pattern
     function create(event) {
-        var o = {};
+        var o = {}, tags;
         event.preventDefault();
         o = $(this).parent("form").formParams();
-        Object.keys(o, function (k) { o[k] = String(o[k]).trim(); });
-        o.tags = o.tags.split(" ");
+        tags = o.tags;
+        if (typeof tags === "string") { o.tags = tags.trim().split(" "); }
         pattern.put(o);
     }
 
