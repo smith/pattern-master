@@ -1,23 +1,21 @@
 require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
     // Update search results
     function updateResults(results) {
-        console.log("results!");
+        results = results || [];
+        var empty = "<p class='nothing'>Nothing Found</p>",
+            div = $("#results");
+
+        if (results.length === 0) { div.html(empty); }
+        else { div.html("<pre>" + JSON.stringify(results) + "</pre>"); }
     }
 
     // Do a search
     function search(event) {
-        var tags = $(this).siblings("input").val().split(" ");
+        var val = $(this).siblings("input").val().trim(), tags = [];
+        if (val.length > 0) { tags = val.split(" "); }
         event.preventDefault();
-        // TODO: put this in updateResults (as a promise fulfilled)
         $("#results").show();
-        pattern.query({ tags: tags }).then(updateResults);
-    }
-
-    // Add a pattern pane
-    function add(event) {
-        event.preventDefault();
-        tabs.add("#pattern", "New Pattern");
-        console.log("add!");
+        pattern.query(tags).then(updateResults);
     }
 
     // Save new pattern
@@ -27,7 +25,7 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
         o = $(this).parent("form").formParams();
         tags = o.tags;
         if (typeof tags === "string") { o.tags = tags.trim().split(" "); }
-        pattern.put(o);
+        pattern.put(o).then(function (p) { console.log(p); });
     }
 
     // Install handlers for events

@@ -1,28 +1,47 @@
-// TODO: promises
-var p = { then: function () {} };
-
 require.def("pattern", [], function () {
+    var db = $.couch.db("pattern-master"),
+        Promise = $.Deferred;
+
     return {
         get: function (id) {
-            console.log("get " + id);
-            return p;
+            var promise = new Promise();
+            db.openDoc(String(id), {
+                success: function (data) { promise.resolve(data); }
+            });
+            return promise;
         },
 
         put: function (o) {
-            console.log("put");
-            console.log(o);
-            return p;
+            var promise = new Promise();
+            db.saveDoc(o, {
+                success: function (data) {
+                    o._id = data.id;
+                    o._rev = data.rev;
+                    promise.resolve(o);
+                }
+            });
+            return promise;
         },
 
-        "delete": function (id) {
-            console.log("delete " + id);
-            return p;
+        "delete": function (doc) {
+            var promise = new Promise();
+            db.removeDoc(doc, {
+                success: function (data) { promise.resolve(data); }
+            });
+            return promise;
         },
 
         query: function (q) {
-            console.log("query");
-            console.log(q);
-            return p;
+            q = q || [];
+            var promise = new Promise();
+            if (q.length === 0) {
+                db.allDocs({
+                    success: function (data) { promise.resolve(data.rows); }
+                });
+            } else { // TODO
+                promise.resolve([]);
+            }
+            return promise;
         }
     };
 });
