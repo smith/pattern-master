@@ -1,6 +1,7 @@
-require.def("app",
-            ["pattern", "ui/tabs", "ui/form"],
-            function (pattern, tabs, form) {
+require.def("app", ["model/pattern", "ui/tabs", "ui/form"], function () {
+    var pattern = require("model/pattern").Pattern();
+        tabs = require("ui/tabs"),
+        form = require("ui/form");
 
     // Update search results
     function updateResults(results) {

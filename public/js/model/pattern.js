@@ -1,17 +1,17 @@
-require.def("pattern", [], function () {
+require.def("model/pattern", [], function () {
     var db = $.couch.db("pattern-master"),
         Promise = $.Deferred;
 
-    return {
-        get: function (id) {
+    function Pattern() {
+        this.get = function (id) {
             var promise = new Promise();
             db.openDoc(String(id), {
                 success: function (data) { promise.resolve(data); }
             });
             return promise;
-        },
+        };
 
-        put: function (o) {
+        this.put = function (o) {
             var promise = new Promise();
             db.saveDoc(o, {
                 success: function (data) {
@@ -21,17 +21,17 @@ require.def("pattern", [], function () {
                 }
             });
             return promise;
-        },
+        };
 
-        "delete": function (doc) {
+        this["delete"] =  function (doc) {
             var promise = new Promise();
             db.removeDoc(doc, {
                 success: function (data) { promise.resolve(data); }
             });
             return promise;
-        },
+        };
 
-        query: function (q) {
+        this.query = function (q) {
             q = q || [];
             var promise = new Promise();
             if (q.length === 0) {
@@ -42,6 +42,10 @@ require.def("pattern", [], function () {
                 promise.resolve({ rows: [] });
             }
             return promise;
-        }
-    };
+        };
+
+        if (!(this instanceof Pattern)) { return new Pattern(); }
+    }
+
+    return { Pattern: Pattern };
 });
