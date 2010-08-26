@@ -1,4 +1,7 @@
-require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
+require.def("app",
+            ["pattern", "ui/tabs", "ui/form"],
+            function (pattern, tabs, form) {
+
     // Update search results
     function updateResults(results) {
         results = results || [];
@@ -28,14 +31,22 @@ require.def("app", ["pattern", "ui/tabs"], function (pattern, tabs) {
         pattern.put(o).then(function (p) { console.log(p); });
     }
 
-    // Install handlers for events
+    // Main setup
     function run() {
+        var container = $("#tabs");
+
+        // Event handlers
         $("#search form button").live("click", search);
         $(".pattern form button").live("click", create);
 
-        tabs.create("#tabs");
+        // Widgets
+        tabs.create(container);
+        form.create();
         $("button").button();
         $("input[type=date]").datepicker();
+
+        // Reveal container
+        container.show();
     }
 
     return { run: run };

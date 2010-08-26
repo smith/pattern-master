@@ -5,55 +5,41 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="stylesheets/screen.css" />
   <link rel="stylesheet" type="text/css" href="stylesheets/smoothness/jquery-ui-1.8.4.custom.css" />
+  <link rel="stylesheet" type="text/css" href="stylesheets/ui.jqgrid.css" />
 </head>
 <body>
-<div id="main">
-  <header><h1>Pattern Master</h1></header>
-  <div id="tabs">
-    <ul>
-      <li class="search"><a href="#search">Search</a></li>
-      <li class="add"><a href="#new">New Pattern</a></li>
-    </ul>
-    <div id="search">
-      <form action="" method="get">
-        <input type="search" name="tags" id="search-tags" />
-        <button>Search</button>
-      </form>
-      <div id="results">
-        <p class="nothing">Nothing found</p>
+<!-- Templates -->
+<script type="text/mustache" id="pattern-form-template">
+  <div id="pattern-{{id}}" class="pattern">
+    <form action="" method="post">
+      <div class="item">
+        <label for="item-name-{{id}}">Name</label>
+        <input name="name" id="item-name-{{id}}" />
       </div>
-    </div>
-    <div id="new" class="pattern">
-      <form action="" method="post">
-        <div class="item">
-          <label for="item-name">Name</label>
-          <input name="name" id="item-name" />
-        </div>
-        <div class="item">
-          <label for="item-tags">Tags</label>
-          <textarea name="tags" id="item-tags"></textarea>
-        </div>
-        <div class="item">
-          <label for="item-description">Description</label>
-          <textarea name="description" id="item-description"></textarea>
-        </div>
-        <div class="item">
-          <label for="item-publication">Publication</label>
-          <input name="publication" id="item-publication" />
-        </div>
-        <div class="item">
-          <label for="item-date">Date</label>
-          <input type="date" name="date" id="item-date" />
-        </div>
-        <div class="item">
-          <label for="item-notes">Notes</label>
-          <textarea name="notes" id="item-notes"></textarea>
-        </div>
-        <button>Create</button>
-      </form>
-    </div>
+      <div class="item">
+        <label for="item-tags-{{id}}">Tags</label>
+        <textarea name="tags" id="item-tags-{{id}}"></textarea>
+      </div>
+      <div class="item">
+        <label for="item-description-{{id}}">Description</label>
+        <textarea name="description" id="item-description-{{id}}"></textarea>
+      </div>
+      <div class="item">
+        <label for="item-publication-{{id}}">Publication</label>
+        <input name="publication" id="item-publication-{{id}}" />
+      </div>
+      <div class="item">
+        <label for="item-date-{{id}}">Date</label>
+        <input type="date" name="date" id="item-date-{{id}}" />
+      </div>
+      <div class="item">
+        <label for="item-notes-{{id}}">Notes</label>
+        <textarea name="notes" id="item-notes-{{id}}"></textarea>
+      </div>
+      <button>{{#new}}Create{{/new}}{{^new}}Update{{/new}}</button>
+    </form>
   </div>
-</div>
+</script>
 <script src="js/jquery.js"></script>
 <script>require(["main"]);</script>
 </body>
