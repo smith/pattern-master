@@ -40,6 +40,30 @@
     </form>
   </div>
 </script>
+<script type="text/mustache" id="search-results-template">
+  <ul>
+  {{#rows}}
+    <li><a href="{{id}}">{{id}}</a></li>
+  {{/rows}}
+  {{^rows}}<li>Nothing found.</li>{{/rows}}
+  </ul>
+</script>
+<div id="main">
+  <header><h1>Pattern Master</h1></header>
+  <div id="tabs">
+    <ul>
+      <li class="search"><a href="#search">Search</a></li>
+    </ul>
+    <div id="search">
+      <form action="" method="get">
+        <input type="search" name="tags" id="search-tags" />
+        <button>Search</button>
+      </form>
+      <div id="results"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="js/jquery.js"></script>
 <script>require(["main"]);</script>
 </body>

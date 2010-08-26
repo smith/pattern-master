@@ -4,12 +4,10 @@ require.def("app",
 
     // Update search results
     function updateResults(results) {
-        results = results || [];
-        var empty = "<p class='nothing'>Nothing Found</p>",
-            div = $("#results");
-
-        if (results.length === 0) { div.html(empty); }
-        else { div.html("<pre>" + JSON.stringify(results) + "</pre>"); }
+        results = results || { rows: [] };
+        var div = $("#results"),
+            tmpl = $("#search-results-template").html();
+        div.html($.mustache(tmpl, results)).show();
     }
 
     // Do a search
@@ -17,7 +15,6 @@ require.def("app",
         var val = $(this).siblings("input").val().trim(), tags = [];
         if (val.length > 0) { tags = val.split(" "); }
         event.preventDefault();
-        $("#results").show();
         pattern.query(tags).then(updateResults);
     }
 

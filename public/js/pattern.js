@@ -36,10 +36,10 @@ require.def("pattern", [], function () {
             var promise = new Promise();
             if (q.length === 0) {
                 db.allDocs({
-                    success: function (data) { promise.resolve(data.rows); }
+                    success: function (data) { promise.resolve(data); }
                 });
             } else { // TODO
-                promise.resolve([]);
+                promise.resolve({ rows: [] });
             }
             return promise;
         }
