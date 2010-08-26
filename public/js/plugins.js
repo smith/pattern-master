@@ -3,7 +3,7 @@ require.def("plugins",
             ["global-es5", "plugins/ui", "plugins/formparams", "plugins/couch",
              "plugins/deferred", "plugins/mustache"],
             function () {
-    if (typeof JSON === "undefined") { require(["json2"]); }
+    if (typeof JSON === "undefined") { require(["json"]); }
 });
 // TODO
 // tags, forms, grid, hash, cookie, closable tabs
