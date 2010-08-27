@@ -9,32 +9,37 @@
 <body>
 <!-- Templates -->
 <script type="text/mustache" id="pattern-form-template">
-  <div id="pattern-{{id}}" class="pattern">
+  <div id="pattern-{{_id}}" class="pattern">
     <form action="" method="post">
       <div class="item">
-        <label for="item-name-{{id}}">Name</label>
-        <input name="name" id="item-name-{{id}}" />
+        <label for="item-name-{{_id}}">Name</label>
+        <input name="name" id="item-name-{{_id}}" value="{{^new}}{{name}}{{/new}}" />
       </div>
       <div class="item">
-        <label for="item-tags-{{id}}">Tags</label>
-        <textarea name="tags" id="item-tags-{{id}}"></textarea>
+        <label for="item-tags-{{_id}}">Tags</label>
+        <textarea name="tags" id="item-tags-{{_id}}">{{tags}}</textarea>
       </div>
       <div class="item">
-        <label for="item-description-{{id}}">Description</label>
-        <textarea name="description" id="item-description-{{id}}"></textarea>
+        <label for="item-description-{{_id}}">Description</label>
+        <textarea name="description" id="item-description-{{_id}}">{{description}}</textarea>
       </div>
       <div class="item">
-        <label for="item-publication-{{id}}">Publication</label>
-        <input name="publication" id="item-publication-{{id}}" />
+        <label for="item-publication-{{_id}}">Publication</label>
+        <input name="publication" id="item-publication-{{_id}}" value="{{publication}}" />
       </div>
       <div class="item">
-        <label for="item-date-{{id}}">Date</label>
-        <input type="date" name="date" id="item-date-{{id}}" />
+        <label for="item-date-{{_id}}">Date</label> <input type="date" name="date" id="item-date-{{_id}}" value="{{date}}" />
       </div>
       <div class="item">
-        <label for="item-notes-{{id}}">Notes</label>
-        <textarea name="notes" id="item-notes-{{id}}"></textarea>
+        <label for="item-notes-{{_id}}">Notes</label>
+        <textarea name="notes" id="item-notes-{{_id}}">{{notes}}</textarea>
       </div>
+      {{^new}}
+      <div style="display:none;">
+        <input type="hidden" name="_id" value="{{_id}}" />
+        <input type="hidden" name="_rev" value="{{_rev}}" />
+      </div>
+      {{/new}}
       <button>{{#new}}Create{{/new}}{{^new}}Update{{/new}}</button>
     </form>
   </div>
@@ -42,7 +47,7 @@
 <script type="text/mustache" id="search-results-template">
   <ul>
   {{#rows}}
-    <li><a href="#{{id}}">{{id}}</a></li>
+  <li><a href="#{{id}}">{{#doc}}{{name}}{{/doc}}</a></li>
   {{/rows}}
   {{^rows}}<li>Nothing found.</li>{{/rows}}
   </ul>
@@ -59,7 +64,6 @@
         <button>Search</button>
       </form>
       <div id="results"></div>
-      </div>
     </div>
   </div>
 </div>

@@ -1,14 +1,16 @@
 require.def("app", ["model/pattern", "ui/tabs", "ui/form"], function () {
     var pattern = require("model/pattern").Pattern();
         tabs = require("ui/tabs"),
-        form = require("ui/form");
+        form = require("ui/form"),
+        searchResults = {};
 
     // Update search results
     function updateResults(results) {
-        results = results || { rows: [] };
+        searchResults = results || { rows: [] };
+
         var div = $("#results"),
             tmpl = $("#search-results-template").html();
-        div.html($.mustache(tmpl, results)).show();
+        div.html($.mustache(tmpl, searchResults)).show();
     }
 
     // Do a search
@@ -26,16 +28,25 @@ require.def("app", ["model/pattern", "ui/tabs", "ui/form"], function () {
         o = $(this).parent("form").formParams();
         tags = o.tags;
         if (typeof tags === "string") { o.tags = tags.trim().split(" "); }
-        pattern.put(o).then(function (p) { console.log(p); });
+        pattern.put(o).then(function (p) { form.create(p); });
+    }
+
+    // Add a tab and form
+    function addForm(event) {
+        var position = $(event.target).parent("li").index(),
+            data = searchResults.rows[position].doc;
+
+        form.create(data);
     }
 
     // Main setup
-    function run() {
+    function start() {
         var container = $("#tabs");
 
         // Event handlers
         $("#search form button").live("click", search);
         $(".pattern form button").live("click", create);
+        $("#search #results a").live("click", addForm);
 
         // Widgets
         tabs.create(container);
@@ -47,5 +58,5 @@ require.def("app", ["model/pattern", "ui/tabs", "ui/form"], function () {
         container.show();
     }
 
-    return { run: run };
+    return { start: start };
 });

@@ -36,6 +36,7 @@ require.def("model/pattern", [], function () {
             var promise = new Promise();
             if (q.length === 0) {
                 db.allDocs({
+                    include_docs: true,
                     success: function (data) { promise.resolve(data); }
                 });
             } else { // TODO
