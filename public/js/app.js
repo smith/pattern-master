@@ -4,7 +4,7 @@ require.def("app", ["model/pattern", "model/tag", "ui/tabs", "ui/form"], functio
         tabs = require("ui/tabs"),
         form = require("ui/form"),
         searchResults = {};
-console.log(tag.query());
+
     // Update search results
     function updateResults(results) {
         searchResults = results || { rows: [] };

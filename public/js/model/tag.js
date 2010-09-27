@@ -1,15 +1,17 @@
-require.def("model/tag", [], function () {
-    var when = $.when,
-        tags = ["one", "two", "three"];
+require.def("model/tag", ["require", "exports", "module", "model"],
+function (require, exports, module) {
 
-    function Tag() {
-        if (!(this instanceof Tag)) { return new Tag(); }
-        this.query = function () {
+var when = $.when,
+    tags = ["one", "two", "three"];
+
+exports.Tag = function () {
+    return {
+        query: function () {
             var d = new $.Deferred();
             d.resolve(tags);
             return d.promise;
-        };
-    }
+        }
+    };
+};
 
-    return { Tag: Tag };
 });
