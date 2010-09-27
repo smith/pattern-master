@@ -1,3 +1,6 @@
 [submodule "vendor/es5-shim"]
 	path = vendor/es5-shim
 	url = git://github.com/kriskowal/es5-shim.git
+[submodule "vendor/jquery-deferred"]
+	path = vendor/jquery-deferred
+	url = git://github.com/sifu/jquery-deferred.git
