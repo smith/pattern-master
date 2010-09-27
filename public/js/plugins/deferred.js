@@ -1,1 +1,1 @@
-vendor/jquery-deferred/jquery.deferred.js
+/home/smith/apps/pattern-master/vendor/jquery-deferred/jquery.deferred.js

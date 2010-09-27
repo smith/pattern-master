@@ -1,1 +1,1 @@
-vendor/es5-shim/es5-shim.js
+/home/smith/apps/pattern-master/vendor/es5-shim/es5-shim.js
