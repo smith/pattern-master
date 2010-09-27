@@ -6,7 +6,7 @@ var pattern = require("model/pattern").Pattern();
     tag = require("model/tag").Tag();
     tabs = require("ui/tabs"),
     form = require("ui/form"),
-    search = {};
+    search = require("ui/search").Search({ model: pattern });
 
 // Save new pattern
 function create(event) {
@@ -20,9 +20,9 @@ function create(event) {
 
 // Add a tab and form
 function addForm(event) {
+    console.log(search)
     var position = $(event.target).parent("li").index(),
-        data = search.results.rows[position].doc;
-
+        data = search.getRows()[position].doc;
     form.create(data);
 }
 
@@ -30,7 +30,6 @@ function addForm(event) {
 exports.start = function () {
     var container = $("#tabs");
 
-    search = require("ui/search").Search({ model: pattern });
 
     // Event handlers
     $(".pattern form button").live("click", create);
