@@ -5,7 +5,7 @@ var Promise = $.Deferred;
 
 exports.CouchDBStore = function (options) {
     options = options || {};
-    console.log(options.database);
+
     var db = this.database = $.couch.db(options.database);
 
     return {
