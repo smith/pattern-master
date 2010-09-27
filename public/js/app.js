@@ -1,63 +1,49 @@
-require.def("app", ["model/pattern", "model/tag", "ui/tabs", "ui/form"], function () {
-    var pattern = require("model/pattern").Pattern();
-        tag = require("model/tag").Tag();
-        tabs = require("ui/tabs"),
-        form = require("ui/form"),
-        searchResults = {};
+require.def("app",
+["require", "exports", "module", "model/pattern", "model/tag", "ui/tabs", "ui/form", "ui/search"],
+function (require, exports, module) {
 
-    // Update search results
-    function updateResults(results) {
-        searchResults = results || { rows: [] };
+var pattern = require("model/pattern").Pattern();
+    tag = require("model/tag").Tag();
+    tabs = require("ui/tabs"),
+    form = require("ui/form"),
+    search = {};
 
-        var div = $("#results"),
-            tmpl = $("#search-results-template").html();
-        div.html($.mustache(tmpl, searchResults)).show();
-    }
+// Save new pattern
+function create(event) {
+    var o = {}, tags;
+    event.preventDefault();
+    o = $(this).parent("form").formParams();
+    tags = o.tags;
+    if (typeof tags === "string") { o.tags = tags.trim().split(" "); }
+    pattern.put(o).then(function (p) { form.create(p); });
+}
 
-    // Do a search
-    function search(event) {
-        var val = $(this).siblings("input").val().trim(), tags = [];
-        if (val.length > 0) { tags = val.split(" "); }
-        event.preventDefault();
-        pattern.query(tags).then(updateResults);
-    }
+// Add a tab and form
+function addForm(event) {
+    var position = $(event.target).parent("li").index(),
+        data = search.results.rows[position].doc;
 
-    // Save new pattern
-    function create(event) {
-        var o = {}, tags;
-        event.preventDefault();
-        o = $(this).parent("form").formParams();
-        tags = o.tags;
-        if (typeof tags === "string") { o.tags = tags.trim().split(" "); }
-        pattern.put(o).then(function (p) { form.create(p); });
-    }
+    form.create(data);
+}
 
-    // Add a tab and form
-    function addForm(event) {
-        var position = $(event.target).parent("li").index(),
-            data = searchResults.rows[position].doc;
+// Main setup
+exports.start = function () {
+    var container = $("#tabs");
 
-        form.create(data);
-    }
+    search = require("ui/search").Search({ model: pattern });
 
-    // Main setup
-    function start() {
-        var container = $("#tabs");
+    // Event handlers
+    $(".pattern form button").live("click", create);
+    $(container).live("search:result:clicked", addForm);
 
-        // Event handlers
-        $("#search form button").live("click", search);
-        $(".pattern form button").live("click", create);
-        $("#search #results a").live("click", addForm);
+    // Widgets
+    tabs.create(container);
+    form.create();
+    $("button").button();
+    $("input[type=date]").datepicker();
 
-        // Widgets
-        tabs.create(container);
-        form.create();
-        $("button").button();
-        $("input[type=date]").datepicker();
+    // Reveal container
+    container.show();
+};
 
-        // Reveal container
-        container.show();
-    }
-
-    return { start: start };
 });
