@@ -1,7 +1,7 @@
-require.def("model/tag", ["require", "exports", "module", "model"],
+require.def("model/tag", ["require", "exports", "module", "model", "promise"],
 function (require, exports, module) {
 
-var when = $.when,
+var when = require("promise").when,
     tags = ["one", "two", "three"];
 
 exports.Tag = function () {

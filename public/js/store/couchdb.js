@@ -1,7 +1,7 @@
-require.def("store/couchdb", ["require", "exports", "module"],
+require.def("store/couchdb", ["require", "exports", "module", "promise"],
 function (require, exports, module) {
 
-var Promise = $.Deferred;
+var defer = require("promise").defer;
 
 exports.CouchDBStore = function (options) {
     options = options || {};
@@ -10,45 +10,45 @@ exports.CouchDBStore = function (options) {
 
     return {
         get: function (id) {
-            var promise = new Promise();
+            var d = defer();
             db.openDoc(String(id), {
-                success: function (data) { promise.resolve(data); }
+                success: function (data) { d.resolve(data); }
             });
-            return promise;
+            return d.promise;
         },
 
         put: function (o) {
-            var promise = new Promise();
+            var d = defer();
             db.saveDoc(o, {
                 success: function (data) {
                     o._id = data.id;
                     o._rev = data.rev;
-                    promise.resolve(o);
+                    d.resolve(o);
                 }
             });
-            return promise;
+            return d.promise;
         },
 
         "delete": function (doc) {
-            var promise = new Promise();
+            var d = defer();
             db.removeDoc(doc, {
-                success: function (data) { promise.resolve(data); }
+                success: function (data) { d.resolve(data); }
             });
-            return promise;
+            return d.promise;
         },
 
         query: function (q) {
             q = q || [];
-            var promise = new Promise();
+            var d = defer();
             if (q.length === 0) {
                 db.allDocs({
                     include_docs: true,
-                    success: function (data) { promise.resolve(data); }
+                    success: function (data) { d.resolve(data); }
                 });
             } else { // TODO
-                promise.resolve({ rows: [] });
+                d.resolve({ rows: [] });
             }
-            return promise;
+            return d.promise;
         }
     };
 };
