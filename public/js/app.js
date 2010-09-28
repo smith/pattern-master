@@ -20,7 +20,6 @@ function create(event) {
 
 // Add a tab and form
 function addForm(event) {
-    console.log(search)
     var position = $(event.target).parent("li").index(),
         data = search.getRows()[position].doc;
     form.create(data);
@@ -29,7 +28,6 @@ function addForm(event) {
 // Main setup
 exports.start = function () {
     var container = $("#tabs");
-
 
     // Event handlers
     $(".pattern form button").live("click", create);
