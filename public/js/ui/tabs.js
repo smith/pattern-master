@@ -1,15 +1,15 @@
-require.def("ui/tabs", function () {
-    var t, // tab container
-        addIndex = 0;
+require.def(["require", "exports", "module"], function (require, exports, module) {
 
-    return {
-        create: function (selector) {
-            t = $(selector);
-            t.tabs();
-        },
+var t, // tab container
+    addIndex = 0;
 
-        add: function (selector, title) {
-            t.tabs("add", selector, title);
-        }
-    };
+exports.create = function (selector) {
+    t = $(selector);
+    t.tabs();
+};
+
+exports.add = function (selector, title) {
+    t.tabs("add", selector, title);
+};
+
 });

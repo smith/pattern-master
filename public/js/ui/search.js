@@ -1,5 +1,4 @@
-require.def("ui/search", ["require", "exports", "module"],
-function (require, exports, module) {
+require.def(["require", "exports", "module"], function (require, exports, module) {
 
 var Search = exports.Search = function (options) {
     if (!(this instanceof Search)) { return new Search(options); }

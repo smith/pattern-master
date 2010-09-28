@@ -1,5 +1,5 @@
-require.def("store/couchdb", ["require", "exports", "module", "promise"],
-function (require, exports, module) {
+require.def(["require", "exports", "module", "promise"],
+            function (require, exports, module) {
 
 var defer = require("promise").defer;
 

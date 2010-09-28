@@ -1,6 +1,4 @@
-require.def("app",
-["require", "exports", "module", "model/pattern", "model/tag", "ui/tabs", "ui/form", "ui/search"],
-function (require, exports, module) {
+require.def(function (require, exports, module) {
 
 var pattern = require("model/pattern").Pattern();
     tag = require("model/tag").Tag();

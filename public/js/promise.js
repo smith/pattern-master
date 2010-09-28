@@ -1,6 +1,6 @@
 // Promise extensions
-require.def("promise", ["require", "exports", "module", "plugins/deferred"],
-function (require, exports, module) {
+require.def(["require", "exports", "module", "plugins/deferred"],
+            function (require, exports, module) {
 
 var Promise = exports.Promise = $.Deferred;
 exports.when = $.when;
